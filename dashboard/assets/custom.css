@@ -1,0 +1,339 @@
+/* HRRR Weather Dashboard — Dark Theme Stylesheet */
+
+:root {
+    --Dash-Fill-Inverse-Strong: #1e293b !important;
+    --Dash-Fill-Interactive-Weak: #334155 !important;
+    --Dash-Fill-Interactive-Strong: #6366f1 !important;
+    --Dash-Stroke-Strong: #334155 !important;
+    --Dash-Text-Strong: #f8fafc !important;
+    --Dash-Text-Weak: #94a3b8 !important;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+}
+
+/* ── Controls Bar ───────────────────────────────────────────────────────── */
+.controls-bar {
+    background-color: #162032 !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+.control-label {
+    color: #cbd5e1 !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+}
+
+/* ── Modern Dash Dropdown (.dash-dropdown) ──────────────────────────────── */
+
+.dash-dropdown,
+.dash-dropdown-wrapper,
+.dash-dropdown-dark {
+    --Dash-Fill-Inverse-Strong: #1e293b !important;
+    --Dash-Fill-Interactive-Weak: #334155 !important;
+    --Dash-Fill-Interactive-Strong: #6366f1 !important;
+    --Dash-Stroke-Strong: #334155 !important;
+    --Dash-Text-Strong: #f8fafc !important;
+    --Dash-Text-Weak: #94a3b8 !important;
+    background-color: transparent !important;
+    color: #f8fafc !important;
+}
+
+/* Dropdown Trigger Box (The input field) */
+.dash-dropdown .dash-dropdown-trigger,
+.dash-dropdown-trigger,
+.dash-dropdown-dark .dash-dropdown-trigger {
+    background: #1e293b !important;
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    border-radius: 8px !important;
+    color: #f8fafc !important;
+    min-height: 38px !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.dash-dropdown-trigger:hover,
+.dash-dropdown-dark .dash-dropdown-trigger:hover {
+    border-color: #6366f1 !important;
+}
+
+.dash-dropdown-trigger:focus,
+.dash-dropdown-trigger:focus-within,
+.dash-dropdown-dark .dash-dropdown-trigger:focus-within {
+    border-color: #818cf8 !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Value Text */
+.dash-dropdown-value,
+.dash-dropdown-value-item,
+.dash-dropdown-dark .dash-dropdown-value,
+.dash-dropdown-dark .dash-dropdown-value-item {
+    color: #f8fafc !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+/* Placeholder Text */
+.dash-dropdown-placeholder,
+.dash-dropdown-dark .dash-dropdown-placeholder {
+    color: #94a3b8 !important;
+    font-size: 13px !important;
+}
+
+/* Search input inside dropdown */
+.dash-dropdown-search,
+.dash-dropdown-dark .dash-dropdown-search,
+.dash-dropdown input {
+    color: #f8fafc !important;
+    font-size: 13px !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Dropdown Menu Popup */
+.dash-dropdown .dash-dropdown-content,
+.dash-dropdown-content,
+.dash-dropdown-dark .dash-dropdown-content {
+    background: #1e293b !important;
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.75) !important;
+    z-index: 99999 !important;
+    margin-top: 4px !important;
+    max-height: 320px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* Options Container */
+.dash-dropdown .dash-dropdown-options,
+.dash-dropdown-options,
+.dash-dropdown-dark .dash-dropdown-options {
+    background: #1e293b !important;
+    background-color: #1e293b !important;
+    border-radius: 8px !important;
+    padding: 4px !important;
+    max-height: 250px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #475569 #1e293b !important;
+}
+
+.dash-dropdown-content::-webkit-scrollbar,
+.dash-dropdown-options::-webkit-scrollbar {
+    width: 6px !important;
+    display: block !important;
+}
+
+.dash-dropdown-content::-webkit-scrollbar-track,
+.dash-dropdown-options::-webkit-scrollbar-track {
+    background: #1e293b !important;
+}
+
+.dash-dropdown-content::-webkit-scrollbar-thumb,
+.dash-dropdown-options::-webkit-scrollbar-thumb {
+    background: #475569 !important;
+    border-radius: 3px !important;
+}
+
+.dash-dropdown-content::-webkit-scrollbar-thumb:hover,
+.dash-dropdown-options::-webkit-scrollbar-thumb:hover {
+    background: #64748b !important;
+}
+
+/* Option Items */
+.dash-dropdown-option,
+.dash-dropdown-dark .dash-dropdown-option {
+    background: #1e293b !important;
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    cursor: pointer !important;
+    transition: background-color 0.1s ease !important;
+}
+
+/* Option Hover / Focused */
+.dash-dropdown-option:hover,
+.dash-dropdown-option:focus,
+.dash-dropdown-option.is-focused,
+.dash-dropdown-dark .dash-dropdown-option:hover,
+.dash-dropdown-dark .dash-dropdown-option:focus {
+    background: #334155 !important;
+    background-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+/* Selected Option */
+.dash-dropdown-option.is-selected,
+.dash-dropdown-option--selected,
+.dash-dropdown-dark .dash-dropdown-option.is-selected {
+    background: #6366f1 !important;
+    background-color: #6366f1 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* Trigger icons (arrow, clear) */
+.dash-dropdown-trigger-icon,
+.dash-dropdown-clear,
+.dash-dropdown-search-icon,
+.dash-dropdown svg {
+    color: #94a3b8 !important;
+    fill: #94a3b8 !important;
+    stroke: #94a3b8 !important;
+}
+
+.dash-dropdown-trigger:hover .dash-dropdown-trigger-icon,
+.dash-dropdown-clear:hover {
+    color: #f1f5f9 !important;
+    fill: #f1f5f9 !important;
+}
+
+/* ── Fallback for React-Select & legacy Dash Dropdown ───────────────────── */
+
+.dash-dropdown-dark div[class*="control"],
+.dash-dropdown-dark [class*="control"],
+.dash-dropdown-dark .Select-control,
+.Select-control {
+    background: #1e293b !important;
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    border-radius: 8px !important;
+    color: #f8fafc !important;
+}
+
+.dash-dropdown-dark [class*="singleValue"],
+.dash-dropdown-dark [class*="ValueContainer"],
+.dash-dropdown-dark .Select-value,
+.dash-dropdown-dark .Select-value-label,
+.Select-value-label {
+    color: #f8fafc !important;
+}
+
+.dash-dropdown-dark [class*="menu"],
+.dash-dropdown-dark .Select-menu-outer,
+.Select-menu-outer {
+    background: #1e293b !important;
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    border-radius: 8px !important;
+    color: #f1f5f9 !important;
+}
+
+.dash-dropdown-dark [class*="option"],
+.dash-dropdown-dark .Select-option,
+.Select-option {
+    background: #1e293b !important;
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+}
+
+.dash-dropdown-dark [class*="option"]:hover,
+.dash-dropdown-dark .Select-option.is-focused {
+    background: #334155 !important;
+    background-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+/* ── Range Slider Dark Styling ─────────────────────────────────────────── */
+
+/* HIDE the white min/max number input boxes (0 and 35) */
+.dash-range-slider-input,
+.dash-input-container,
+.dash-range-slider-min-input,
+.dash-range-slider-max-input {
+    display: none !important;
+}
+
+.dash-slider-root,
+.dash-range-slider-dark,
+.rc-slider {
+    padding: 10px 0 !important;
+}
+
+.rc-slider-rail,
+.dash-slider-rail {
+    background-color: #334155 !important;
+    height: 6px !important;
+    border-radius: 3px !important;
+}
+
+.rc-slider-track,
+.dash-slider-track,
+.dash-slider-range {
+    background-color: #6366f1 !important;
+    height: 6px !important;
+    border-radius: 3px !important;
+}
+
+.rc-slider-handle,
+.dash-slider-handle {
+    border: 2px solid #6366f1 !important;
+    background-color: #818cf8 !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35) !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-top: -5px !important;
+    cursor: grab !important;
+}
+
+.rc-slider-handle:hover,
+.rc-slider-handle:active,
+.dash-slider-handle:hover {
+    border-color: #a5b4fc !important;
+    background-color: #a5b4fc !important;
+    cursor: grabbing !important;
+}
+
+.rc-slider-dot,
+.dash-slider-dot {
+    border: 2px solid #334155 !important;
+    background: #1e293b !important;
+    bottom: -2px !important;
+    width: 10px !important;
+    height: 10px !important;
+}
+
+.rc-slider-dot-active,
+.dash-slider-dot-active {
+    border-color: #6366f1 !important;
+    background: #818cf8 !important;
+}
+
+.rc-slider-mark-text,
+.dash-slider-mark-text {
+    color: #cbd5e1 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    margin-top: 6px !important;
+}
+
+/* Tooltip */
+.rc-slider-tooltip,
+.rc-tooltip,
+.rc-tooltip-inner {
+    display: none !important;
+}
+
+/* ── Scrollbars ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #1e293b; }
+::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }

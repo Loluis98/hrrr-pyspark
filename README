@@ -1,0 +1,87 @@
+# HRRR Databricks — Weather Lake Pipeline
+
+Ingests NOAA [HRRR](https://rapidrefresh.noaa.gov/hrrr/) (High-Resolution Rapid Refresh)
+weather model output from a public S3 bucket into a local Delta Lake, then
+refines it through bronze → silver → gold layers.
+
+---
+
+## Project Structure
+
+```
+hrrr databricks/
+├── constants.py                  # All Delta table & checkpoint paths
+├── backfill.py                   # One-off historical backfill script
+├── run_silver.sh                 # Shell wrapper for bronze→silver (sets JVM flags)
+│
+├── pipelines/
+│   ├── ingest.py                 # S3 → Bronze  (daily incremental)
+│   ├── bronze_to_silver.py       # Bronze → Silver (GRIB2 decode)
+│   └── silver_to_gold.py         # Silver → Gold  (city aggregations)
+│
+└── utils/
+    ├── spark.py                  # Spark session factory functions
+    └── capital_cities.py         # One-time seeder for the us_capitals reference table
+```
+
+---
+
+## Pipeline Overview
+
+| Stage | Script | Description |
+|---|---|---|
+| **Ingest** | `pipelines/ingest.py` | Streams raw GRIB2 binaries from `s3a://noaa-hrrr-bdp-pds` into the Bronze Delta table. |
+| **Silver** | `pipelines/bronze_to_silver.py` | Decodes binaries with `cfgrib`/`xarray`, extracts ~20 meteorological variables, partitions by date. |
+| **Gold** | `pipelines/silver_to_gold.py` | Spatial join to US state capitals; writes hourly observations and daily min/avg/max aggregates. |
+| **Backfill** | `backfill.py` | Batch-reads the last N days from S3 to seed the Bronze table. Run once before the daily pipeline. |
+| **Seed** | `utils/capital_cities.py` | Writes the 50-row capitals reference table. Run once before the Gold pipeline. |
+
+---
+
+## Quick Start
+
+### 1. Seed the reference data (once)
+```bash
+python -m utils.capital_cities
+```
+
+### 2. Backfill historical data (once)
+```bash
+python backfill.py
+```
+
+### 3. Run the daily ingestion
+```bash
+python -m pipelines.ingest
+```
+
+### 4. Run the Silver pipeline
+```bash
+bash run_silver.sh   # sets required JVM flags, then calls pipelines/bronze_to_silver
+# or directly:
+python -m pipelines.bronze_to_silver
+```
+
+### 5. Run the Gold pipeline
+```bash
+python -m pipelines.silver_to_gold
+```
+
+---
+
+## Why GRIB2 → Binary First?
+
+NOAA HRRR data comes in GRIB2 format. Ingesting it as raw binary blobs
+(Bronze) lets Spark Auto Loader efficiently track new files without parsing
+them. The Silver pipeline then decodes the binaries in parallel using
+`cfgrib`, safely isolating decode errors per file.
+
+---
+
+## Running on Databricks
+
+1. Push this repo to Databricks Repos (or upload the scripts directly).
+2. Create a Workflow with tasks for each pipeline stage in order.
+3. The NOAA S3 bucket is public — no credentials are required.
+4. Ensure the cluster has `cfgrib`, `xarray`, `eccodes`, and `delta-spark`
+   installed (via cluster libraries or `requirements.txt`).
